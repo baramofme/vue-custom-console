@@ -1,14 +1,14 @@
 {
-  "name": "vue-console",
-  "version": "2.1.0",
-  "description": "console system for Vue based on console.js",
+  "name": "vue-custom-console",
+  "version": "1.0.0",
+  "description": "custom console system for Vue based on console.js",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onexdata/vue-console.git"
+    "url": "git+https://github.com/baramofme/vue-custom-console.git"
   },
   "keywords": [
     "console",
@@ -20,10 +20,10 @@
     "help",
     "mobile-console"
   ],
-  "author": "Nick Steele <njsteele@gmail.com>",
+  "author": "Jihoon Yi <baramofme@gmail.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/onexdata/vue-console/issues"
+    "url": "https://github.com/baramofme/vue-custom-console/issues"
   },
-  "homepage": "https://github.com/onexdata/vue-console#readme"
+  "homepage": "https://github.com/baramofme/vue-custom-console#readme"
 }
