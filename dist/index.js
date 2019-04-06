@@ -45,7 +45,7 @@
   }
  */
 
-import consoleComponent from './console'
+import consoleComponent from './console.vue'
 
 export default {
   install (Vue, options) {

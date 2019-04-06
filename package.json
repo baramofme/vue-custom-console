@@ -1,6 +1,6 @@
 {
   "name": "vue-custom-console",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "custom console system for Vue based on console.js",
   "main": "dist/index.js",
   "scripts": {
