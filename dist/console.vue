@@ -19,7 +19,7 @@
   }
 
   export default {
-    name: 'v-console',
+    name: 'v-custom-console',
     props: {
       settings: { type: Object, required: false }
     },
