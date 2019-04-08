@@ -1,6 +1,6 @@
 # Vue Custom Console [![npm version](https://badgen.net/npm/v/vue-custom-console)](https://npm.im/vue-custom-console)
 
-Vue command console component can executes user's custom and display the result. 
+Vue command console component can executes user's custom commands and display the result. 
 
 It's based on [console.js v.1.2.2](https://github.com/amio/console.js/releases/tag/v1.2.0), and console.js dev tells that is for game console.
 
@@ -39,11 +39,13 @@ use `<v-custom-console>` inside template:
 
 Make Console Like Video Game Console. You can press hotKey `~` to show console.
 
-when no props value or `videoGameConsole = false` : 
+Default value is false.
+
+When no props value or `videoGameConsole = false` : 
 
 ![](./img/videoGameConsoleFalse.jpg)
 
-when props value set true :
+When props value set true :
 
 ```vue
 <template>
@@ -60,10 +62,9 @@ when props value set true :
 
 > **You should use this options** with `:hotKeyDisable="false"`
 
-
 ### hotKeyDisable
 
-Default hotKey is disabled. but when you set `videoGameConsole` to `true`, 
+Default hotKey feature is disabled. but when you set `videoGameConsole` to `true`, 
 you should enabled hotKey features like below: 
 
 ```vue
@@ -152,5 +153,4 @@ below is props overridable and it's default value:
     Add commands to the console by simply adding a commands: {} to your components!<br/>
     Check the github repo for structure. Any component can mixin as many commands as you need!<br/>
     press up or down for history!<br/>`
-     
 ```
