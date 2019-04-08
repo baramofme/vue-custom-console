@@ -1,5 +1,5 @@
 <template>
-  <div class="console-panel" :class="{ shown: isShown }">
+  <div class="console-panel" :class="[ isShown ? 'systemShown' : '', !videoGameConsole ? `elementShown` : '']">
     <div ref="display" class="console-display">
       <div v-for="(item, index) in logs" :key="index" v-html="item" >
       </div>
@@ -10,9 +10,9 @@
 
 <script>
   // This is the infrastructure that toggles the console (via browser core so there is no interference)...
-  function createHotkeyListener (self, key) {
+  function createHotkeyListener (self, key, hotKeyDisable) {
     return function (e) {
-      if (e.keyCode !== key) return
+      if (e.keyCode !== key || hotKeyDisable) return
       self.toggle()
       e.preventDefault()
     }
@@ -21,6 +21,8 @@
   export default {
     name: 'v-custom-console',
     props: {
+      videoGameConsole:{ type: Boolean, required: false, default: false},
+      hotKeyDisable:{ type: Boolean, required: false, default: true},
       settings: { type: Object, required: false }
     },
     computed: {
@@ -64,7 +66,7 @@
       this.$console.toggle = this.toggle
       this.$console.guide = this.guide
       this.$console.commands = this.config.commands
-      this.hotkeyListener = createHotkeyListener(this, this.config.hotkey)
+      this.hotkeyListener = createHotkeyListener(this, this.config.hotkey, this.hotKeyDisable)
       window.addEventListener('keydown', this.hotkeyListener)
       this.config.welcome && this.log('message', this.config.welcome)
     },
@@ -120,7 +122,7 @@
         var filterFn = function (handlerName) {
           return handlerName.indexOf(this.cmd) === 0
         }
-          var matched = Object.keys(this.config.commands).filter(filterFn)
+        var matched = Object.keys(this.config.commands).filter(filterFn)
         switch (matched.length) {
           case 0:
             return this.cmd
@@ -151,7 +153,7 @@
         var parts = str.split(' ')
         var name = this.config.caseSensitive ? parts[0] : parts[0].toLowerCase()
 
-        if (this.$console.commands[name]) {
+        if (typeof this.$console.commands !== 'undefined' && this.$console.commands[name]()) {
           var command = this.$console.commands[name]().command
           var result
           result = command(parts.splice(1))
@@ -165,7 +167,7 @@
         var guide = ''
         Object.keys(this.$console.commands).sort().forEach(name => {
           guide += '<div class="console-guide-heading">' + name + '</div>' +
-            '<div class="console-guide-detail">' + this.$console.commands[name].guide + '</div>'
+                  '<div class="console-guide-detail">' + this.$console.commands[name].guide + '</div>'
         })
         return guide
       }
@@ -187,9 +189,16 @@
     transition: margin-top 100ms ease-out 1ms;
   }
 
-  .console-panel.shown {
+  .console-panel.systemShown {
     visibility: visible;
     margin-top: 0;
+  }
+
+  .console-panel.elementShown {
+    visibility: visible;
+    margin-top: 0;
+    position: relative;
+    left: auto;
   }
 
   .console-guide-tip { color: rgba(255, 255, 255, 0.9); }
