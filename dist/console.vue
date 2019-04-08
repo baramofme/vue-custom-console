@@ -153,7 +153,7 @@
         var parts = str.split(' ')
         var name = this.config.caseSensitive ? parts[0] : parts[0].toLowerCase()
 
-        if (typeof this.$console.commands !== 'undefined' && this.$console.commands[name]()) {
+          if (typeof this.$console.commands !== 'undefined' && typeof this.$console.commands[name] !== 'undefined') {
           var command = this.$console.commands[name]().command
           var result
           result = command(parts.splice(1))
